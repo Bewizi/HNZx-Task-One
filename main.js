@@ -3,33 +3,24 @@ let currentTime = document.querySelector(".currentUTCTIme");
 
 let d = new Date();
 let day = d.getDay();
-let options = { hour: 'numeric', minute: 'numeric', second: 'numeric', millisecond: 'numeric' };
-let ndate = d.toLocaleTimeString(undefined, options);
+const newDay = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+currentDay.innerHTML = newDay[day];
+let options = {
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric",
+  millisecond: "numeric",
+};
+let utcHours = d.getUTCHours(undefined, options);
+let utcMinute = d.getUTCMinutes(undefined, options);
+let utcSecond = d.getUTCSeconds(undefined, options);
 
-
-switch (day) {
-  case 0:
-    day = "Sunday";
-    break;
-  case 1:
-    day = "Monday";
-    break;
-  case 2:
-    day = "Tuesday";
-    break;
-  case 3:
-    day = "Wednesday";
-    break;
-  case 4:
-    day = "Thursday";
-    break;
-  case 5:
-    day = "Friday";
-    break;
-  case 6:
-    day = "Saturday";
-}
-
-
-currentDay.innerHTML = day;
-currentTime.innerHTML = ndate;
+currentTime.innerHTML = `${utcHours}:${utcMinute}:${utcSecond}`;
